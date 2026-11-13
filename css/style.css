@@ -15,17 +15,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 :root {
-  /* Palette : nommée par le rôle, pas par la couleur */
-  --color-bg: #FFFFFF;          /* fond */
-  --color-text: #0F0F0F;        /* texte principal */
-  --color-muted: #606060;       /* texte secondaire : chaîne, vues, date */
-  --color-primary: #FF0000;     /* rouge YouTube : logo Shorts */
-  --color-accent: #065FD4;      /* bleu des liens « Se connecter » */
-  --color-accent-light: #DEF1FF;/* bleu très clair au survol de « Se connecter » */
-  --color-hover: #F2F2F2;       /* fond au survol */
-  --color-hover-dark: #E5E5E5;  /* fond au survol d'un bouton déjà gris */
-  --color-border: #E5E5E5;      /* lignes de séparation */
-  --color-overlay: rgb(0 0 0 / 80%); /* noir transparent des pastilles de durée */
+  /* Palette : thème sombre (équivalent officiel YouTube) */
+  --color-bg: #0F0F0F;            /* fond principal (gris quasi noir, moins agressif que #000000) */
+  --color-text: #F1F1F1;          /* texte principal (blanc cassé pour éviter la fatigue oculaire) */
+  --color-muted: #AAAAAA;         /* texte secondaire : chaîne, vues, date */
+  --color-primary: #FF0000;       /* rouge YouTube : inchangé */
+  --color-accent: #3EA6FF;        /* bleu clair des liens « Se connecter » (plus lisible sur fond sombre) */
+  --color-accent-light: #263850;  /* bleu nuit au survol de « Se connecter » */
+  --color-hover: #272727;         /* fond au survol (et fond des boutons secondaires/pills) */
+  --color-hover-dark: #3F3F3F;    /* fond au survol d'un bouton déjà gris */
+  --color-border: #3F3F3F;        /* lignes de séparation (ou rgb(255 255 255 / 20%)) */
+  --color-overlay: rgb(0 0 0 / 80%); /* noir transparent des pastilles de durée : inchangé */
 
   /* Espacements */
   --space-1: 4px;
@@ -97,8 +97,7 @@ h3 { font-size: 1rem; }    /* 16px : les titres YouTube sont petits */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--color-text);
-  outline-offset: 2px;
+  outline: 1px solid var(--color-accent);
 }
 
 /* Les icônes Material Symbols : une icône = un mot écrit dans un <span>.
@@ -234,8 +233,10 @@ main {
   min-width: 0;
   height: 40px;
   padding: 0 var(--space-4);
-  border: 1px solid #CCCCCC;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill) 0 0 var(--radius-pill); /* arrondi à gauche */
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font: inherit;
 }
 
@@ -245,14 +246,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #CCCCCC;
+  border: 1px solid var(--color-border);
   border-left: none;
   border-radius: 0 var(--radius-pill) var(--radius-pill) 0; /* arrondi à droite */
-  background-color: #F8F8F8;
+  background-color: var(--color-hover);
+  color: var(--color-text);
 }
 
 .search-btn:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-hover-dark);
 }
 
 /* La loupe seule ne sert qu'au téléphone : cachée sur ordinateur */
@@ -791,7 +793,8 @@ main {
 }
 
 .suggestion-titre {
-  display: -webkit-box;    /* titre coupé après 2 lignes */
+  display: -webkit-box;   
+  line-clamp: 2; /* titre coupé après 2 lignes */
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
