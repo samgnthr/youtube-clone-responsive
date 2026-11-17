@@ -721,8 +721,8 @@ main {
 }
 
 .avatar-commentaire {
-  width: 40px;
-  height: 40px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
 }
 
 .commentaire {
@@ -897,8 +897,7 @@ body.sidebar-basculee .sidebar {
    .page-lecteur ajoutée sur son <body>. */
 @media (max-width: 1440px) {
   .page-lecteur .sidebar {
-    width: 72px;
-    padding: var(--space-2) var(--space-1);
+    display: none;
   }
 
   .page-lecteur .sidebar section:not(:first-child),
