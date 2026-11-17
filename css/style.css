@@ -558,8 +558,8 @@ main {
 }
 
 .short-card {
-  width: 210px;
   flex-shrink: 0;
+  flex: 0 0 calc((100% - (5 * 15px)) / 5);
 }
 
 .short-card .miniature img {
@@ -880,6 +880,16 @@ body.sidebar-basculee .sidebar {
   min-width: 0;
 }
 
+/* Lecteur vidéo local (créé par js/lecteur.js) : mêmes réglages que l'iframe YouTube */
+.video-cadre video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  background-color: #000000;
+  object-fit: contain;
+}
+
 
 /* --- Page vidéo seulement : 1440 px et moins ---
    Comme sur YouTube, la sidebar se réduit en mini-guide (72 px) pour laisser
@@ -1013,6 +1023,10 @@ body.sidebar-basculee .sidebar {
   .chaine-actions::-webkit-scrollbar {
     display: none;
   }
+
+  .short-card{
+    flex: 0 0 calc((100% - (3 * 16px)) / 4);
+  }
 }
 
 
@@ -1060,6 +1074,10 @@ body.sidebar-basculee .sidebar {
   /* Page vidéo : la chaîne sur 2 lignes, boutons sur toute la largeur */
   .chaine-actions {
     width: 100%;
+  }
+
+  .short-card{
+    flex: 0 0 calc((100% - (2 * 16px)) / 3);
   }
 }
 
@@ -1153,6 +1171,11 @@ body.sidebar-basculee .sidebar {
     width: 32px;
     height: 32px;
   }
+
+  .short-card{
+    flex: 0 0 calc((100% - 16px) / 2);
+  }
+
 }
 
 
