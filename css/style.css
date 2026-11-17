@@ -12,22 +12,21 @@
 
 /* Police Roboto chargée depuis Google Fonts.
    @import se met TOUT EN HAUT du fichier, avant toute règle : sinon il est ignoré. */
+/* ===== 1. VARIABLES ===== */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 :root {
-  /* Palette : thème sombre (équivalent officiel YouTube) */
-  --color-bg: #0F0F0F;            /* fond principal (gris quasi noir, moins agressif que #000000) */
-  --color-text: #F1F1F1;          /* texte principal (blanc cassé pour éviter la fatigue oculaire) */
-  --color-muted: #AAAAAA;         /* texte secondaire : chaîne, vues, date */
-  --color-primary: #FF0000;       /* rouge YouTube : inchangé */
-  --color-accent: #3EA6FF;        /* bleu clair des liens « Se connecter » (plus lisible sur fond sombre) */
-  --color-accent-light: #263850;  /* bleu nuit au survol de « Se connecter » */
-  --color-hover: #272727;         /* fond au survol (et fond des boutons secondaires/pills) */
-  --color-hover-dark: #3F3F3F;    /* fond au survol d'un bouton déjà gris */
-  --color-border: #3F3F3F;        /* lignes de séparation (ou rgb(255 255 255 / 20%)) */
-  --color-overlay: rgb(0 0 0 / 80%); /* noir transparent des pastilles de durée : inchangé */
+  --color-bg: #0F0F0F;
+  --color-text: #F1F1F1;
+  --color-muted: #AAAAAA;
+  --color-primary: #FF0000;
+  --color-accent: #3EA6FF;
+  --color-accent-light: #263850;
+  --color-hover: #272727;
+  --color-hover-dark: #3F3F3F;
+  --color-border: #3F3F3F;
+  --color-overlay: rgb(0 0 0 / 80%);
 
-  /* Espacements */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -35,13 +34,11 @@
   --space-5: 24px;
   --space-6: 40px;
 
-  /* Arrondis */
-  --radius-sm: 4px;      /* pastille de durée */
-  --radius-md: 8px;      /* boutons de filtre, liens de la sidebar */
-  --radius-lg: 12px;     /* miniatures */
-  --radius-pill: 40px;   /* forme de pilule */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 40px;
 
-  /* Tailles relevées sur YouTube */
   --header-height: 56px;
   --sidebar-width: 240px;
   --avatar-size: 36px;
@@ -50,22 +47,21 @@
 
 
 /* ===== 2. RESET ===== */
-
 * {
-  box-sizing: border-box;  /* la largeur écrite inclut le padding et la bordure */
+  box-sizing: border-box;
 }
 
 body, h1, h2, h3, p {
-  margin: 0;               /* enlève les marges que le navigateur ajoute tout seul */
+  margin: 0;
 }
 
 img {
-  display: block;          /* plus d'espace vide sous les images */
-  max-width: 100%;         /* une image ne déborde jamais de son parent */
+  display: block;
+  max-width: 100%;
 }
 
 button {
-  font: inherit;           /* les boutons prennent la police du site */
+  font: inherit;
   color: inherit;
   border: none;
   background-color: transparent;
@@ -73,41 +69,36 @@ button {
 }
 
 a {
-  color: inherit;          /* même couleur que le texte autour */
+  color: inherit;
   text-decoration: none;
 }
 
 
 /* ===== 3. BASE ===== */
-
 body {
   font-family: "Roboto", Arial, sans-serif;
-  font-size: 1rem;         /* 16px */
-  line-height: 1.5;        /* interligne confortable */
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--color-text);
   background-color: var(--color-bg);
-  padding-top: var(--header-height); /* le header est fixe : on lui laisse sa place */
+  padding-top: var(--header-height);
 }
 
-h1 { font-size: 1.25rem; } /* 20px */
-h2 { font-size: 1.25rem; } /* 20px */
-h3 { font-size: 1rem; }    /* 16px : les titres YouTube sont petits */
+h1 { font-size: 1.25rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
 
-/* Toujours voir où on est au clavier (touche Tab) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
   outline: 1px solid var(--color-accent);
 }
 
-/* Les icônes Material Symbols : une icône = un mot écrit dans un <span>.
-   Elles se règlent comme du TEXTE : font-size pour la taille, color pour la couleur. */
 .material-symbols-outlined {
   font-size: 24px;
   line-height: 1;
 }
 
-/* Texte caché à l'écran mais lu par les lecteurs d'écran (le h1 de l'accueil) */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -119,8 +110,6 @@ input:focus-visible {
 
 
 /* ===== 4. MISE EN PAGE ===== */
-
-/* --- Header fixe, 3 groupes --- */
 .banner {
   position: fixed;
   top: 0;
@@ -133,7 +122,7 @@ input:focus-visible {
   gap: var(--space-4);
   padding: 0 var(--space-4);
   background-color: var(--color-bg);
-  z-index: 10;             /* reste au-dessus du contenu quand on défile */
+  z-index: 20;
 }
 
 .banner-start,
@@ -147,45 +136,45 @@ input:focus-visible {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  flex: 1;                 /* prend la place libre au milieu */
+  flex: 1;
   max-width: 720px;
 }
 
-/* --- #page met la sidebar et le main côte à côte --- */
 #page {
   display: flex;
 }
 
 .sidebar {
   width: var(--sidebar-width);
-  flex-shrink: 0;          /* ne rétrécit jamais */
-  position: sticky;        /* reste en place quand on fait défiler les vidéos */
+  flex-shrink: 0;
+  position: sticky;
   top: var(--header-height);
   height: calc(100vh - var(--header-height));
-  overflow-y: auto;        /* défile toute seule si elle est trop longue */
+  overflow-y: auto;
   padding: var(--space-3);
+  background-color: var(--color-bg);
 }
 
 main {
-  flex: 1;                 /* prend toute la place qui reste */
-  min-width: 0;            /* autorise le main à rétrécir (sinon les filtres le font déborder) */
+  flex: 1;
+  min-width: 0;
   padding: var(--space-5);
 }
 
-/* --- Page vidéo : lecteur + suggestions côte à côte (fiche V3) --- */
+/* Page vidéo */
 .page-video {
   display: flex;
   gap: var(--space-5);
 }
 
 .lecteur {
-  flex: 1;                 /* c'est le lecteur qui s'adapte */
+  flex: 1;
   min-width: 0;
 }
 
 .suggestions {
   width: var(--suggestions-width);
-  flex-shrink: 0;          /* la colonne de droite ne rétrécit jamais */
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -193,8 +182,6 @@ main {
 
 
 /* ===== 5. COMPOSANTS ===== */
-
-/* --- Boutons ronds (menu, micro, notifications, 3 points) --- */
 .icon-btn {
   width: 40px;
   height: 40px;
@@ -202,7 +189,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 50%;      /* carré 40 × 40 → rond */
+  border-radius: 50%;
 }
 
 .icon-btn:hover {
@@ -217,24 +204,24 @@ main {
   background-color: var(--color-hover-dark);
 }
 
-/* --- Logo --- */
-.logo img {
-  height: 20px;            /* une seule dimension : pas de déformation */
+.logo a {
+  font-size: 20px;
+  min-height: 20px;
 }
 
-/* --- Barre de recherche --- */
+/* Barre de recherche */
 .search {
   display: flex;
   flex: 1;
 }
 
 .search-input {
-  flex: 1;                 /* le champ prend la place à côté du bouton */
+  flex: 1;
   min-width: 0;
   height: 40px;
   padding: 0 var(--space-4);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill) 0 0 var(--radius-pill); /* arrondi à gauche */
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
   background-color: var(--color-bg);
   color: var(--color-text);
   font: inherit;
@@ -248,7 +235,7 @@ main {
   align-items: center;
   border: 1px solid var(--color-border);
   border-left: none;
-  border-radius: 0 var(--radius-pill) var(--radius-pill) 0; /* arrondi à droite */
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   background-color: var(--color-hover);
   color: var(--color-text);
 }
@@ -257,12 +244,11 @@ main {
   background-color: var(--color-hover-dark);
 }
 
-/* La loupe seule ne sert qu'au téléphone : cachée sur ordinateur */
 .search-mobile {
   display: none;
 }
 
-/* --- Bouton « Créer » --- */
+/* Bouton Créer */
 .btn-create {
   display: flex;
   align-items: center;
@@ -279,12 +265,12 @@ main {
   background-color: var(--color-hover-dark);
 }
 
-/* --- Avatars : images rondes --- */
+/* Avatars */
 .avatar {
   width: var(--avatar-size);
   height: var(--avatar-size);
   border-radius: 50%;
-  object-fit: cover;       /* remplit le rond sans s'écraser */
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -298,7 +284,7 @@ main {
   margin-left: var(--space-2);
 }
 
-/* --- Sidebar --- */
+/* Sidebar */
 .sidebar section {
   padding: var(--space-3) 0;
   border-bottom: 1px solid var(--color-border);
@@ -312,24 +298,43 @@ main {
 
 .sidebar p {
   padding: 0 var(--space-3);
-  font-size: 0.875rem;     /* 14px */
-}
-
-.items a {
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
   font-size: 0.875rem;
 }
 
+.items a,
+.btn-toggle-sidebar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
 .items a:hover,
-.items a:focus-visible {
+.items a:focus-visible,
+.btn-toggle-sidebar:hover,
+.btn-toggle-sidebar:focus-visible {
   background-color: var(--color-hover);
 }
 
-/* Lien « Se connecter » en forme de pilule */
+/* Lien actif dans la sidebar (importé de youtube-clone copie) */
+.items a.active {
+  background-color: var(--color-hover);
+  font-weight: 500;
+}
+
+.items a.active:hover {
+  background-color: var(--color-hover-dark);
+}
+
+/* Éléments masqués avant clic sur "Plus" */
+.item-hidden {
+  display: none !important;
+}
+
 .se-connecter {
   display: inline-flex;
   align-items: center;
@@ -348,17 +353,16 @@ main {
   background-color: var(--color-accent-light);
 }
 
-/* Footer de la sidebar */
 .sidebar footer {
   padding: var(--space-4) var(--space-3);
-  font-size: 0.75rem;      /* 12px */
+  font-size: 0.75rem;
   color: var(--color-muted);
 }
 
 #links-primary,
 #links-secondary {
   display: flex;
-  flex-wrap: wrap;         /* les liens passent à la ligne */
+  flex-wrap: wrap;
   gap: var(--space-1) var(--space-2);
   margin-bottom: var(--space-3);
 }
@@ -368,27 +372,27 @@ main {
   text-decoration: underline;
 }
 
-/* --- Filtres (fiche A1) --- */
+/* Filtres */
 .filtres {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  overflow-x: auto;        /* trop de boutons ? la barre défile à l'horizontale */
+  overflow-x: auto;
   margin-bottom: var(--space-5);
 }
 
 .filtres::-webkit-scrollbar {
-  display: none;           /* cache la barre de défilement */
+  display: none;
 }
 
 .filtres button {
-  flex-shrink: 0;          /* un bouton ne rétrécit jamais */
+  flex-shrink: 0;
   padding: 6px var(--space-3);
   border-radius: var(--radius-md);
   background-color: var(--color-hover);
   font-size: 0.875rem;
   font-weight: 500;
-  white-space: nowrap;     /* « Jeux vidéo » reste sur une ligne */
+  white-space: nowrap;
 }
 
 .filtres button:hover,
@@ -396,50 +400,62 @@ main {
   background-color: var(--color-hover-dark);
 }
 
-/* Le bouton sélectionné : on inverse les couleurs */
 .filtres button.active {
   background-color: var(--color-text);
   color: var(--color-bg);
 }
 
-/* La flèche au bout de la barre est un bouton rond, pas un filtre */
 .filtres .filtres-suite {
   padding: 0;
   border-radius: 50%;
   background-color: transparent;
 }
 
-/* --- Grille de vidéos (fiche A2) : flexbox + flex-wrap, pas de CSS Grid --- */
+/* Grille de vidéos */
 .videos {
   display: flex;
-  flex-wrap: wrap;         /* les cartes passent à la ligne */
-  gap: var(--space-6) var(--space-4); /* 40px entre les lignes · 16px entre les colonnes */
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-4);
 }
 
-/* --- Une carte vidéo --- */
 .video-card {
-  /* 3 cartes par ligne : (largeur - 2 écarts) / 3 */
   width: calc((100% - 2 * var(--space-4)) / 3);
 }
 
-/* La miniature : un lien qui sert de repère aux pastilles (position: relative) */
 .miniature {
   position: relative;
   display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-hover);
 }
 
 .miniature img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;       /* recadre l'image si elle n'est pas pile en 16/9 */
+  object-fit: cover;
   border-radius: var(--radius-lg);
 }
 
-/* La pastille de durée, posée par-dessus la miniature */
+/* Vidéo de prévisualisation au survol (importée de youtube-clone copie) */
+.miniature video.preview-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  border-radius: var(--radius-lg);
+}
+
 .duree {
   position: absolute;
   right: var(--space-2);
   bottom: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   padding: 1px var(--space-1);
   border-radius: var(--radius-sm);
   background-color: var(--color-overlay);
@@ -448,7 +464,10 @@ main {
   font-weight: 500;
 }
 
-/* .video-infos : avatar, texte et 3 points sur une ligne */
+.duree .icon-duree {
+  font-size: 14px;
+}
+
 .video-infos {
   display: flex;
   align-items: flex-start;
@@ -457,11 +476,16 @@ main {
 }
 
 .video-texte {
-  flex: 1;                 /* le texte prend la place entre l'avatar et les 3 points */
+  flex: 1;
   min-width: 0;
 }
 
 .video-texte h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-weight: 500;
   line-height: 1.4;
   margin-bottom: var(--space-1);
@@ -472,7 +496,6 @@ main {
   font-size: 0.875rem;
 }
 
-/* Les 3 points n'apparaissent qu'au survol de la carte */
 .btn-3-points {
   opacity: 0;
 }
@@ -482,7 +505,7 @@ main {
   opacity: 1;
 }
 
-/* --- Carte sponsorisée (fiche A4) : on ne corrige que ce qui change --- */
+/* Carte sponsorisée */
 .sponsorisee .fleche {
   position: absolute;
   right: var(--space-2);
@@ -495,7 +518,7 @@ main {
 }
 
 .sponsorisee .description-pub {
-  display: -webkit-box;    /* coupe le texte après 2 lignes avec « … » */
+  display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -508,7 +531,7 @@ main {
   font-size: 0.75rem;
 }
 
-/* --- Section Shorts (fiche A3) --- */
+/* Section Shorts */
 .shorts {
   margin: var(--space-6) 0;
   padding: var(--space-4) 0;
@@ -525,13 +548,13 @@ main {
 
 .logo-shorts {
   color: var(--color-primary);
-  font-variation-settings: "FILL" 1; /* icône pleine au lieu de contour */
+  font-variation-settings: "FILL" 1;
 }
 
 .shorts-liste {
-  display: flex;           /* toutes les cartes sur UNE ligne */
+  display: flex;
   gap: var(--space-4);
-  overflow-x: auto;        /* la 6e carte sort de l'écran au lieu de casser la ligne */
+  overflow-x: auto;
 }
 
 .short-card {
@@ -540,7 +563,7 @@ main {
 }
 
 .short-card .miniature img {
-  aspect-ratio: 9 / 16;    /* format vertical */
+  aspect-ratio: 9 / 16;
 }
 
 .short-texte {
@@ -548,6 +571,11 @@ main {
 }
 
 .short-texte h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.4;
@@ -558,7 +586,7 @@ main {
   font-size: 0.75rem;
 }
 
-/* --- Lecteur (fiche V1) : l'iframe garde le format 16/9 --- */
+/* --- Lecteur (video.html) --- */
 .video-cadre iframe {
   display: block;
   width: 100%;
@@ -574,7 +602,6 @@ main {
   font-weight: 700;
 }
 
-/* Ligne de la chaîne : chaîne à gauche, boutons à droite */
 .chaine {
   display: flex;
   justify-content: space-between;
@@ -616,10 +643,9 @@ main {
 }
 
 .btn-abonner:hover {
-  background-color: #272727;
+  background-color: #D9D9D9;
 }
 
-/* Boutons en pilule : J'aime, Partager, Télécharger, Enregistrer */
 .btn-pill {
   display: flex;
   align-items: center;
@@ -641,7 +667,6 @@ main {
   font-size: 20px;
 }
 
-/* Description sur fond gris */
 .description {
   margin-top: var(--space-3);
   padding: var(--space-3);
@@ -656,7 +681,7 @@ main {
   font-weight: 500;
 }
 
-/* --- Commentaires (fiche V2) --- */
+/* Commentaires */
 .commentaires {
   margin-top: var(--space-5);
 }
@@ -676,7 +701,6 @@ main {
   font-weight: 500;
 }
 
-/* La ligne pour écrire : avatar + champ qui prend toute la place */
 .ajouter-commentaire {
   display: flex;
   align-items: center;
@@ -690,6 +714,8 @@ main {
   padding: var(--space-1) 0;
   border: none;
   border-bottom: 1px solid var(--color-border);
+  background-color: transparent;
+  color: var(--color-text);
   font: inherit;
   font-size: 0.875rem;
 }
@@ -699,10 +725,9 @@ main {
   height: 40px;
 }
 
-/* Un commentaire : avatar à gauche, bloc texte à droite */
 .commentaire {
   display: flex;
-  align-items: flex-start; /* surtout pas center : le texte est plus haut que l'avatar */
+  align-items: flex-start;
   gap: var(--space-4);
   margin-bottom: var(--space-4);
   font-size: 0.875rem;
@@ -714,7 +739,7 @@ main {
 }
 
 .commentaire-auteur {
-  font-size: 0.8125rem;    /* 13px */
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
@@ -763,7 +788,7 @@ main {
   font-weight: 500;
 }
 
-/* --- Suggestions (fiche V3) : tout le lien est cliquable --- */
+/* Suggestions */
 .suggestion {
   display: flex;
   gap: var(--space-2);
@@ -777,7 +802,7 @@ main {
 }
 
 .suggestion .miniature {
-  width: 168px;            /* miniature fixe : on donne les 2 tailles */
+  width: 168px;
   height: 94px;
   flex-shrink: 0;
 }
@@ -789,15 +814,15 @@ main {
 
 .suggestion-texte {
   display: flex;
-  flex-direction: column;  /* titre, chaîne et vues les uns sous les autres */
+  flex-direction: column;
   min-width: 0;
   color: var(--color-muted);
   font-size: 0.75rem;
 }
 
 .suggestion-titre {
-  display: -webkit-box;   
-  line-clamp: 2; /* titre coupé après 2 lignes */
+  display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -808,16 +833,11 @@ main {
   line-height: 1.4;
 }
 
-
-/* --- Interactions JavaScript (js/script.js) ---
-   Le JS ajoute ou enlève une classe ; ici, ce que ça change SUR ORDINATEUR. */
-
-/* Bouton menu ☰ : sur ordinateur, la sidebar « basculée » se cache */
+/* Interactions JS */
 body.sidebar-basculee .sidebar {
   display: none;
 }
 
-/* « …afficher plus » : la suite de la description n'apparaît qu'une fois ouverte */
 .description-suite {
   display: none;
 }
@@ -827,28 +847,319 @@ body.sidebar-basculee .sidebar {
 }
 
 
-/* ===== 6. RESPONSIVE : À TOI DE JOUER ===== */
+/* ===== 6. RESPONSIVE ===== */
 
-/* On part de l'ordinateur et on descend (desktop first) : max-width.
-   Une media query ne réécrit QUE ce qui change à cette largeur.
-   Garde cet ordre (de la plus grande largeur à la plus petite) :
-   la règle écrite en dernier gagne. Toutes les consignes sont dans le README.
+/* --- Correctifs valables à TOUTES les largeurs (cause du logo écrasé) ---
+   Dans un flex, chaque bloc peut rétrécir. Ici, le champ de recherche refusait
+   de rétrécir (il garde une largeur minimale par défaut), donc c'est le logo
+   qui payait : il se faisait écraser dès ~720 px.
+   → le logo et les boutons de droite gardent leur taille,
+   → la recherche (seule) a le droit de rétrécir. */
+.banner-start,
+.banner-end {
+  flex-shrink: 0;
+}
 
-   Les classes ajoutées par js/script.js, à utiliser dans tes media queries :
-   - body.sidebar-basculee .sidebar   → le bouton menu ☰ a été cliqué
-   - .banner.recherche-ouverte        → la loupe seule a été cliquée (téléphone) */
+.logo {
+  display: block;
+  flex-shrink: 0;
+  width: 93px;
+  height: 20px;
+}
+
+.logo svg,
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.banner-center,
+.search {
+  min-width: 0;
+}
+
+
+/* --- Page vidéo seulement : 1440 px et moins ---
+   Comme sur YouTube, la sidebar se réduit en mini-guide (72 px) pour laisser
+   plus de place au lecteur. On cible video.html grâce à la classe
+   .page-lecteur ajoutée sur son <body>. */
+@media (max-width: 1440px) {
+  .page-lecteur .sidebar {
+    width: 72px;
+    padding: var(--space-2) var(--space-1);
+  }
+
+  .page-lecteur .sidebar section:not(:first-child),
+  .page-lecteur .sidebar footer {
+    display: none;
+  }
+
+  .page-lecteur .sidebar .items a {
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-1);
+    font-size: 0.625rem;
+    text-align: center;
+  }
+
+  /* Bouton menu cliqué : sidebar complète en superposition */
+  .page-lecteur.sidebar-basculee .sidebar {
+    display: block;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--sidebar-width);
+    padding: var(--space-3);
+    z-index: 15;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .page-lecteur.sidebar-basculee main {
+    margin-left: 72px;
+  }
+
+  .page-lecteur.sidebar-basculee .sidebar section:not(:first-child),
+  .page-lecteur.sidebar-basculee .sidebar footer {
+    display: block;
+  }
+
+  .page-lecteur.sidebar-basculee .sidebar .items a {
+    flex-direction: row;
+    gap: var(--space-5);
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+}
+
 
 /* --- Petit ordinateur / tablette à l'horizontale : 1024 px et moins --- */
 @media (max-width: 1024px) {
+  /* Sidebar réduite en colonne d'icônes (mini) */
+  .sidebar {
+    width: 72px;
+    padding: var(--space-2) var(--space-1);
+  }
 
+  .sidebar section:not(:first-child),
+  .sidebar footer {
+    display: none;
+  }
+
+  .sidebar .items a {
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--space-1);
+    font-size: 0.625rem;
+    text-align: center;
+  }
+
+  /* Si le bouton menu est cliqué, on réaffiche la sidebar complète en superposition */
+  body.sidebar-basculee .sidebar {
+    display: block;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--sidebar-width);
+    padding: var(--space-3);
+    z-index: 15;
+    border-right: 1px solid var(--color-border);
+  }
+
+  /* La sidebar sort du flux quand elle est en superposition :
+     on garde la place du mini-guide pour que la page ne saute pas */
+  body.sidebar-basculee main {
+    margin-left: 72px;
+  }
+
+  body.sidebar-basculee .sidebar section:not(:first-child),
+  body.sidebar-basculee .sidebar footer {
+    display: block;
+  }
+
+  body.sidebar-basculee .sidebar .items a {
+    flex-direction: row;
+    gap: var(--space-5);
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  /* Accueil : on reste à 3 vidéos par ligne (règle de base) */
+
+  /* Page vidéo : suggestions passent sous le lecteur */
+  .page-video {
+    flex-direction: column;
+  }
+
+  .suggestions {
+    width: 100%;
+  }
+
+  /* Ligne de la chaîne : 2 lignes si ça ne tient pas,
+     et les boutons défilent à l'horizontale au lieu de déborder */
+  .chaine {
+    flex-wrap: wrap;
+  }
+
+  .chaine-actions {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .chaine-actions::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 
 /* --- Tablette : 768 px et moins --- */
 @media (max-width: 768px) {
+  /* Sidebar cachée par défaut, s'ouvre en tiroir via .sidebar-basculee
+     (le tiroir en position: fixed est déjà défini dans le bloc 1024) */
+  .sidebar {
+    display: none;
+  }
 
+  /* Plus de mini-guide : le contenu reprend toute la largeur, même tiroir ouvert */
+  body.sidebar-basculee main,
+  .page-lecteur.sidebar-basculee main {
+    margin-left: 0;
+  }
+
+  main {
+    padding: var(--space-4);
+  }
+
+  /* 2 vidéos par ligne */
+  .video-card {
+    width: calc((100% - var(--space-4)) / 2);
+  }
+
+  /* Bouton « Créer » : seulement l'icône + */
+  .btn-create {
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .btn-create span:not(.material-symbols-outlined) {
+    display: none;
+  }
+
+  /* Toujours visible sur tactile (pas de survol) */
+  .btn-3-points {
+    opacity: 1;
+  }
+
+  /* Page vidéo : la chaîne sur 2 lignes, boutons sur toute la largeur */
+  .chaine-actions {
+    width: 100%;
+  }
 }
+
+
+/* --- Entre tablette et téléphone : la recherche manque de place --- */
+@media (max-width: 600px) {
+  /* Le micro disparaît pour laisser la place à la barre de recherche */
+  .banner-center .icon-btn {
+    display: none;
+  }
+
+  .search-btn {
+    width: 48px;
+  }
+}
+
 
 /* --- Téléphone : 480 px et moins --- */
 @media (max-width: 480px) {
+  main {
+    padding: var(--space-3);
+  }
 
+  .banner {
+    gap: var(--space-2);
+    padding: 0 var(--space-2);
+  }
+
+  /* 1 vidéo par ligne */
+  .video-card {
+    width: 100%;
+  }
+
+  /* Shorts : 2 côte à côte, les autres défilent à l'horizontale */
+  .short-card {
+    width: calc((100% - var(--space-4)) / 2);
+  }
+
+  /* Barre de recherche remplacée par le bouton loupe */
+  .banner-center {
+    display: none;
+  }
+
+  .search-mobile {
+    display: flex;
+  }
+
+  /* Quand la loupe mobile est cliquée (.recherche-ouverte ajouté par script.js) */
+  .banner.recherche-ouverte .banner-start,
+  .banner.recherche-ouverte .banner-end {
+    display: none;
+  }
+
+  .banner.recherche-ouverte .banner-center {
+    display: flex;
+    width: 100%;
+  }
+
+  .banner.recherche-ouverte .banner-center .icon-btn {
+    display: flex;
+  }
+
+  /* Suggestions : grandes cartes (miniature au-dessus, texte en dessous) */
+  .suggestion {
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: 0;
+  }
+
+  .suggestion .miniature {
+    width: 100%;
+    height: auto;
+  }
+
+  .suggestion .miniature img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Commentaires plus compacts */
+  .commentaires-entete {
+    gap: var(--space-4);
+  }
+
+  .commentaires h2 {
+    font-size: 1rem;
+  }
+
+  .avatar-commentaire {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+/* --- Très petit téléphone : 360 px et moins --- */
+@media (max-width: 360px) {
+  /* Plus assez de place pour tous les boutons du header */
+  .btn-create {
+    display: none;
+  }
 }

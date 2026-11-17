@@ -2,16 +2,11 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <!-- Indispensable pour le responsive : sans cette ligne, le téléphone affiche la page
-         comme un ordinateur, en tout petit, et les media queries ne servent à rien. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil – YouTube</title>
-    <!-- Tout vient d'Internet (CDN) : pas de dossier img/, fonts/ ou media/ dans ce dépôt -->
     <link rel="icon" href="https://www.youtube.com/favicon.ico" />
-    <!-- Icônes Material Symbols (Google) : on écrit le NOM de l'icône dans un <span> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&amp;display=block" />
     <link rel="stylesheet" href="css/style.css" />
-    <!-- Le seul fichier JavaScript : defer = il attend que la page soit lue avant de s'exécuter -->
     <script src="js/script.js" defer></script>
   </head>
 
@@ -55,9 +50,8 @@
         </button>
       </div>
 
-      <!-- Groupe droit : loupe seule (cachée sur ordinateur), créer, notifications, avatar -->
+      <!-- Groupe droit : loupe mobile, créer, notifications, avatar -->
       <div class="banner-end">
-        <!-- Ce bouton ne sert qu'au téléphone : il est caché sur ordinateur (voir .search-mobile dans le CSS) -->
         <button class="icon-btn search-mobile" type="button" aria-label="Rechercher">
           <span class="material-symbols-outlined" aria-hidden="true">search</span>
         </button>
@@ -81,7 +75,7 @@
         <nav aria-label="Navigation principale">
           <section>
             <div class="items">
-              <a href="#">
+              <a href="#" class="active">
                 <span class="material-symbols-outlined" aria-hidden="true">home</span>
                 <span>Accueil</span>
               </a>
@@ -104,7 +98,7 @@
             </div>
           </section>
 
-          <section>
+          <section class="sidebar-promo">
             <p>
               Connectez-vous à YouTube pour cliquer sur "J'aime", ajouter un
               commentaire et vous abonner.
@@ -130,10 +124,31 @@
                 <span class="material-symbols-outlined" aria-hidden="true">sports_esports</span>
                 <span>Jeux vidéo</span>
               </a>
-              <a href="#">
-                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
-                <span>Plus</span>
+              <!-- Éléments dépliables importés de youtube-clone copie -->
+              <a href="#" class="item-hidden">
+                <span class="material-symbols-outlined" aria-hidden="true">newspaper</span>
+                <span>Actualités</span>
               </a>
+              <a href="#" class="item-hidden">
+                <span class="material-symbols-outlined" aria-hidden="true">emoji_events</span>
+                <span>Sport</span>
+              </a>
+              <a href="#" class="item-hidden">
+                <span class="material-symbols-outlined" aria-hidden="true">lightbulb</span>
+                <span>Savoir &amp; Culture</span>
+              </a>
+              <a href="#" class="item-hidden">
+                <span class="material-symbols-outlined" aria-hidden="true">stadia_controller</span>
+                <span>Jeux intégrés</span>
+              </a>
+              <a href="#" class="item-hidden">
+                <span class="material-symbols-outlined" aria-hidden="true">podcasts</span>
+                <span>Podcasts</span>
+              </a>
+              <button type="button" id="toggle-explorer" class="btn-toggle-sidebar">
+                <span class="material-symbols-outlined" id="toggle-icon" aria-hidden="true">expand_more</span>
+                <span id="toggle-text">Plus</span>
+              </button>
             </div>
           </section>
 
@@ -169,155 +184,165 @@
         <footer>
           <nav aria-label="Liens de pied de page">
             <div id="links-primary">
-              <a href="#">Présentation</a>
-              <a href="#">Presse</a>
-              <a href="#">Droits d'auteur</a>
-              <a href="#">Nous contacter</a>
-              <a href="#">Créateurs</a>
-              <a href="#">Publicité</a>
-              <a href="#">Développeurs</a>
+              <a href="https://about.youtube/">Présentation</a>
+              <a href="https://blog.youtube/">Presse</a>
+              <a href="https://www.youtube.com/howyoutubeworks/copyright/">Droits d'auteur</a>
+              <a href="https://www.youtube.com/t/contact_us/">Nous contacter</a>
+              <a href="https://www.youtube.com/creators/">Créateurs</a>
+              <a href="https://business.google.com/en-all/ad-solutions/youtube-ads/">Publicité</a>
+              <a href="https://developers.google.com/youtube?hl=fr">Développeurs</a>
             </div>
             <div id="links-secondary">
-              <a href="#">Conditions d'utilisation</a>
-              <a href="#">Confidentialité</a>
-              <a href="#">Règles et sécurité</a>
-              <a href="#">Premiers pas sur YouTube</a>
-              <a href="#">Tester de nouvelles fonctionnalités</a>
+              <a href="https://www.youtube.com/t/terms">Conditions d'utilisation</a>
+              <a href="https://policies.google.com/privacy?hl=fr">Confidentialité</a>
+              <a href="https://www.youtube.com/howyoutubeworks/our-policies/">Règles et sécurité</a>
+              <a href="https://www.youtube.com/howyoutubeworks/">Premiers pas sur YouTube</a>
+              <a href="https://www.youtube.com/new">Tester de nouvelles fonctionnalités</a>
             </div>
           </nav>
           <p id="copyright">
-            <small>© 2026 Google LLC · Clone réalisé pour un exercice.</small>
+            <small>© 2026 Google LLC</small>
           </p>
         </footer>
       </aside>
 
       <!-- ===== CONTENU PRINCIPAL ===== -->
       <main>
-        <!-- Chaque page a un <h1> : ici il est caché à l'écran mais lu par les lecteurs d'écran -->
         <h1 class="visually-hidden">Accueil de YouTube</h1>
 
-        <!-- ===== FILTRES (fiche A1) ===== -->
+        <!-- ===== FILTRES ===== -->
         <div class="filtres">
           <button type="button" class="active">Tous</button>
           <button type="button">Musique</button>
           <button type="button">Jeux vidéo</button>
-          <button type="button">Podcasts</button>
+          <button type="button">Film</button>
           <button type="button">En direct</button>
-          <button type="button">Mixes</button>
+          <button type="button">Podcasts</button>
+          <button type="button">Valorant</button>
           <button type="button">Actualités</button>
-          <button type="button">La Réunion</button>
-          <button type="button">Maloya</button>
-          <button type="button">Animation</button>
-          <button type="button">Récemment publiées</button>
-          <button type="button">Nouveautés à découvrir</button>
+          <button type="button">Animations</button>
+          <button type="button">Regardés</button>
+          <button type="button">Nouveautés pour vous</button>
+          <button type="button">Histoire</button>
+          <button type="button">Gadgets</button>
+          <button type="button">Comédies</button>
+          <button type="button">Tourisme</button>
+          <button type="button">Voitures</button>
+          <button type="button">Sciences</button>
+          <button type="button">Publiées récemment</button>
           <button class="icon-btn filtres-suite" type="button" aria-label="Filtres suivants">
             <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
           </button>
         </div>
 
-        <!-- ===== VIDÉOS : 2 lignes de 3 (fiches A2 et A4) ===== -->
+        <!-- ===== VIDÉOS : 1ère grille (6 cartes) ===== -->
         <div class="videos">
-          <!-- Carte sponsorisée : 2 classes, elle garde tout de .video-card -->
+          <!-- Vidéo 1 : Sponsorisée -->
           <article class="video-card sponsorisee">
             <a href="#" class="miniature">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cirque_de_Mafate.jpg?width=640" alt="" />
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cirque_de_Mafate.jpg?width=640" alt="Miniature vidéo" />
               <span class="fleche"><span class="material-symbols-outlined" aria-hidden="true">north_east</span></span>
             </a>
             <div class="video-infos">
               <div class="video-texte">
-                <h3><a href="#">Randonnées guidées dans le cirque de Mafate</a></h3>
-                <p class="description-pub">Départ au lever du soleil, matériel fourni, petits groupes. Réserve ta sortie en ligne.</p>
-                <p class="mention-pub"><b>Sponsorisé</b> · Bazaltik Réunion</p>
+                <h3><a href="#">Boîte mail chaotique ? 7 jours offerts</a></h3>
+                <p class="description-pub">2 000+ e-mails effacés en masse. Testez CleanMyMac.</p>
+                <p class="mention-pub"><b>Sponsorisé</b> · CleanMyMac</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Me at the zoo -->
+
+          <!-- Vidéo 2 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/jNQXAC9IVRw/mqdefault.jpg" alt="" />
+            <a href="video.html" class="miniature" data-preview="media/Trailer.mp4">
+              <img src="img/miniatures/2_7BQ9hLGkk&t=4s-rayman-legends-retold-hq720.jpg" alt="Miniature vidéo" />
+              <span class="duree">2:10</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/ubisoft.jpg" alt="Avatar Ubisoft" />
+              <div class="video-texte">
+                <h3><a href="video.html">RAYMAN LEGENDS RETOLD | Trailer d'annonce</a></h3>
+                <p>Ubisoft</p>
+                <p>944 k vues · il y a 4 m.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 3 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/Vacra - Fille à Papa ft. La Rvfleuze (Visualiser).mp4">
+              <img src="img/miniatures/IO_GLvVB5Vc&list=RDIO_GLvVB5Vc&start_radio=1-fille-a-papa-hq720.jpg" alt="Miniature vidéo" />
+              <span class="duree"><span class="material-symbols-outlined icon-duree" aria-hidden="true">music_note</span>2:52</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/vacra.jpg" alt="Avatar Vacra" />
+              <div class="video-texte">
+                <h3><a href="video.html">Vacra - Fille à Papa ft. La Rvfleuze (Visualiser)</a></h3>
+                <p>Vacra</p>
+                <p>4,2 M de vues · il y a 2 sem.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 4 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/Me at the Zoo.mp4">
+              <img src="img/miniatures/jNQXAC9IVRw-me-at-the-zoo-hqdefault.jpg" alt="Miniature vidéo" />
               <span class="duree">0:19</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=jawed&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/me-at-the-zoo.jpg" alt="Avatar Jawed" />
               <div class="video-texte">
                 <h3><a href="video.html">Me at the zoo</a></h3>
-                <p>jawed</p>
-                <p>396 M de vues · il y a 20 ans</p>
+                <p>Jawed</p>
+                <p>441 M de vues · il y a 21 ans</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Michael Jackson - Smooth Criminal (Official Video) -->
+
+          <!-- Vidéo 5 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/h_D3VFfhvs4/mqdefault.jpg" alt="" />
-              <span class="duree">9:25</span>
+            <a href="video.html" class="miniature" data-preview="media/Remplacement PC Gaming par Steam Machine.mp4">
+              <img src="img/miniatures/kwdf5LD55ag&t=123s-jai-remplacé-mon-pc-par-la-steam-machine-hq720.jpg" alt="Miniature vidéo" />
+              <span class="duree">16:48</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Michael+Jackson&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/kappa.jpg" alt="Avatar KAPPA Studio" />
               <div class="video-texte">
-                <h3><a href="video.html">Michael Jackson - Smooth Criminal (Official Video)</a></h3>
-                <p>Michael Jackson</p>
-                <p>1,1 Md de vues · il y a 15 ans</p>
+                <h3><a href="video.html">J'ai remplacé mon PC Gaming par la Steam Machine (ça valait le coup ?)</a></h3>
+                <p>KAPPA Studio</p>
+                <p>254 k vues · il y a 3 jours</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Rick Astley - Never Gonna Give You Up (Official Video) -->
+
+          <!-- Vidéo 6 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="" />
-              <span class="duree">3:33</span>
+            <a href="video.html" class="miniature" data-preview="media/PAPA OÙ TES Bande Annonce (2026).mp4">
+              <img src="img/miniatures/qRabQPfzOng-papa-ou-tes-hq720.jpg" alt="Miniature vidéo" />
+              <span class="duree">2:30</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Rick+Astley&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/allociné.jpg" alt="Avatar Allociné" />
               <div class="video-texte">
-                <h3><a href="video.html">Rick Astley - Never Gonna Give You Up (Official Video)</a></h3>
-                <p>Rick Astley</p>
-                <p>1,7 Md de vues · il y a 16 ans</p>
-              </div>
-              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
-                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
-              </button>
-            </div>
-          </article>
-          <!-- Carte : Queen – Bohemian Rhapsody (Official Video Remastered) -->
-          <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/fJ9rUzIMcZQ/mqdefault.jpg" alt="" />
-              <span class="duree">5:59</span>
-            </a>
-            <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Queen+Official&amp;background=random&amp;color=fff&amp;size=72" alt="" />
-              <div class="video-texte">
-                <h3><a href="video.html">Queen – Bohemian Rhapsody (Official Video Remastered)</a></h3>
-                <p>Queen Official</p>
-                <p>1,8 Md de vues · il y a 17 ans</p>
-              </div>
-              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
-                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
-              </button>
-            </div>
-          </article>
-          <!-- Carte : Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars -->
-          <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/OPf0YbXqDm0/mqdefault.jpg" alt="" />
-              <span class="duree">4:31</span>
-            </a>
-            <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Mark+Ronson&amp;background=random&amp;color=fff&amp;size=72" alt="" />
-              <div class="video-texte">
-                <h3><a href="video.html">Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars</a></h3>
-                <p>Mark Ronson</p>
-                <p>5,5 Md de vues · il y a 11 ans</p>
+                <h3><a href="video.html">PAPA OÙ T'ES Bande Annonce (2026)</a></h3>
+                <p>Allociné | Bandes Annonce</p>
+                <p>125 k vues · il y a 10 jours</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
@@ -326,7 +351,7 @@
           </article>
         </div>
 
-        <!-- ===== SHORTS (fiche A3) ===== -->
+        <!-- ===== SHORTS ===== -->
         <section class="shorts" aria-labelledby="titre-shorts">
           <div class="shorts-entete">
             <span class="material-symbols-outlined logo-shorts" aria-hidden="true">smart_display</span>
@@ -335,165 +360,389 @@
           <div class="shorts-liste">
             <article class="short-card">
               <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hq720.jpg" alt="" />
+                <img src="media/short/sardefault.avif" alt="Rayman Legends Retold a été repoussé" />
               </a>
               <div class="short-texte">
-                <h3><a href="#">Despacito, mais en 30 secondes</a></h3>
-                <p>8,6 M de vues</p>
+                <h3><a href="#">Rayman Legends Retold a été repoussé</a></h3>
+                <p>49 k vues</p>
               </div>
             </article>
             <article class="short-card">
               <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/9bZkp7q19f0/hq720.jpg" alt="" />
+                <img src="media/short/Sardefault YouTube.avif" alt="Qui a mis du Minecraft dans mon Elden Ring ?" />
               </a>
               <div class="short-texte">
-                <h3><a href="#">La danse la plus copiée du web</a></h3>
-                <p>12 M de vues</p>
+                <h3><a href="#">Qui a mis du Minecraft dans mon Elden Ring ?</a></h3>
+                <p>316 k vues</p>
               </div>
             </article>
             <article class="short-card">
               <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/YQHsXMglC9A/hq720.jpg" alt="" />
+                <img src="media/short/Oardefault 405x720.avif" alt="Keynote Apple le 13 octobre" />
               </a>
               <div class="short-texte">
-                <h3><a href="#">« Hello », mais a cappella</a></h3>
-                <p>4,1 M de vues</p>
+                <h3><a href="#">Keynote Apple le 13 octobre pour le HomePad, le HomePod mini 2 et l’Apple TV 4K 2026 ?…</a></h3>
+                <p>67 k vues</p>
               </div>
             </article>
             <article class="short-card">
               <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/60ItHLz5WEA/hq720.jpg" alt="" />
+                <img src="media/short/oar2 405x720.avif" alt="#animation" />
               </a>
               <div class="short-texte">
-                <h3><a href="#">Faded : la version lente</a></h3>
-                <p>2,3 M de vues</p>
+                <h3><a href="#">#animation</a></h3>
+                <p>1,9 k de vues</p>
               </div>
             </article>
             <article class="short-card">
               <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/hT_nvWreIhg/hq720.jpg" alt="" />
+                <img src="media/short/Oardefault 576x720.avif" alt="Which Shader Is the Best?" />
               </a>
               <div class="short-texte">
-                <h3><a href="#">On compte les étoiles ce soir</a></h3>
-                <p>980 k vues</p>
-              </div>
-            </article>
-            <article class="short-card">
-              <a href="#" class="miniature">
-                <img src="https://i.ytimg.com/vi/CevxZvSJLk8/hq720.jpg" alt="" />
-              </a>
-              <div class="short-texte">
-                <h3><a href="#">Le cri du tigre en coulisses</a></h3>
-                <p>1,5 M de vues</p>
+                <h3><a href="#">Which Shader Is the Best?…</a></h3>
+                <p>287 k vues</p>
               </div>
             </article>
           </div>
         </section>
 
-        <!-- ===== VIDÉOS : 2 autres lignes de 3 ===== -->
+        <!-- ===== VIDÉOS : 2ème grille (18 cartes suivantes de youtube-clone copie) ===== -->
         <div class="videos">
-          <!-- Carte : Tame Impala - Loser (Official Video) -->
+          <!-- Vidéo 7 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/s3a4OQR-10M/mqdefault.jpg" alt="" />
-              <span class="duree">4:12</span>
+            <a href="video.html" class="miniature" data-preview="media/7.mp4">
+              <img src="img/miniatures/Squeeze.avif" alt="Miniature vidéo" />
+              <span class="duree">16:30</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Tame+Impala&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/squeezepp.jpg" alt="Avatar SQUEEZE GAMING" />
               <div class="video-texte">
-                <h3><a href="video.html">Tame Impala - Loser (Official Video)</a></h3>
-                <p>Tame Impala</p>
-                <p>3,2 M de vues · il y a 2 mois</p>
+                <h3><a href="video.html">ON DEVIENT LES BARONS DE LA VILLE (Schedule I)</a></h3>
+                <p>SQUEEZE GAMING</p>
+                <p>1,6 M de vues · il y a 1 an</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Charlie bit my finger - again ! -->
+
+          <!-- Vidéo 8 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/_OBlgSz8sSM/mqdefault.jpg" alt="" />
-              <span class="duree">0:56</span>
+            <a href="video.html" class="miniature" data-preview="media/8.mp4">
+              <img src="img/miniatures/wnakil.avif" alt="Miniature vidéo" />
+              <span class="duree">18:49</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=HDCYT&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/wankilpp.jpg" alt="Avatar Wankil Studio" />
               <div class="video-texte">
-                <h3><a href="video.html">Charlie bit my finger - again !</a></h3>
-                <p>HDCYT</p>
-                <p>880 M de vues · il y a 18 ans</p>
+                <h3><a href="video.html">LES PIRES SUJETS DE CONVERSATION POSSIBLE (Apocalypter)</a></h3>
+                <p>Wankil Studio - Laink et Terracid</p>
+                <p>395 k vues · il y a 19 h</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Adele - Hello (Official Music Video) -->
+
+          <!-- Vidéo 9 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/YQHsXMglC9A/mqdefault.jpg" alt="" />
-              <span class="duree">6:07</span>
+            <a href="video.html" class="miniature" data-preview="media/9.mp4">
+              <img src="img/miniatures/konbini.avif" alt="Miniature vidéo" />
+              <span class="duree">15:03</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Adele&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/kpnbinipp.jpg" alt="Avatar Konbini" />
               <div class="video-texte">
-                <h3><a href="video.html">Adele - Hello (Official Music Video)</a></h3>
-                <p>Adele</p>
-                <p>3,3 Md de vues · il y a 10 ans</p>
+                <h3><a href="video.html">Mister V n'est pas vraiment celui que vous croyez</a></h3>
+                <p>Konbini</p>
+                <p>430 k de vues · il y a 2 m.</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : OneRepublic - Counting Stars (Official Music Video) -->
+
+          <!-- Vidéo 10 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/hT_nvWreIhg/mqdefault.jpg" alt="" />
-              <span class="duree">4:44</span>
+            <a href="video.html" class="miniature" data-preview="media/10.mp4">
+              <img src="img/miniatures/amixem.avif" alt="Miniature vidéo" />
+              <span class="duree">32:57</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=OneRepublic&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/amixempp.jpg" alt="Avatar Amixem" />
               <div class="video-texte">
-                <h3><a href="video.html">OneRepublic - Counting Stars (Official Music Video)</a></h3>
-                <p>OneRepublic</p>
-                <p>4,1 Md de vues · il y a 12 ans</p>
+                <h3><a href="video.html">ON TESTE LES PROMESSES DE PUBLICITÉS #6</a></h3>
+                <p>Amixem</p>
+                <p>4,8 M de vues · il y a 3 m.</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Wiz Khalifa - See You Again ft. Charlie Puth -->
+
+          <!-- Vidéo 11 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/RgKAFK5djSk/mqdefault.jpg" alt="" />
-              <span class="duree">3:58</span>
+            <a href="video.html" class="miniature" data-preview="media/11.mp4">
+              <img src="img/miniatures/mrbeast.avif" alt="Miniature vidéo" />
+              <span class="duree">37:04</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Wiz+Khalifa+Music&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/mrbeastpp.jpg" alt="Avatar MrBeast" />
               <div class="video-texte">
-                <h3><a href="video.html">Wiz Khalifa - See You Again ft. Charlie Puth</a></h3>
-                <p>Wiz Khalifa Music</p>
-                <p>6,4 Md de vues · il y a 10 ans</p>
+                <h3><a href="video.html">Survis 30 Jours Attaché À Ton Ex, Gagne 250 000 $</a></h3>
+                <p>MrBeast</p>
+                <p>256 M vues · il y a 1 an</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
               </button>
             </div>
           </article>
-          <!-- Carte : Shakira - Waka Waka (This Time for Africa) -->
+
+          <!-- Vidéo 12 -->
           <article class="video-card">
-            <a href="video.html" class="miniature">
-              <img src="https://i.ytimg.com/vi/pRpeEdMmmQ0/mqdefault.jpg" alt="" />
-              <span class="duree">3:31</span>
+            <a href="video.html" class="miniature" data-preview="media/12.mp4">
+              <img src="img/miniatures/squeeze1.avif" alt="Miniature vidéo" />
+              <span class="duree">23:36</span>
             </a>
             <div class="video-infos">
-              <img class="avatar" src="https://ui-avatars.com/api/?name=Shakira&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <img class="avatar" src="img/chaine/squeeze1.jpg" alt="Avatar SQUEEZE" />
               <div class="video-texte">
-                <h3><a href="video.html">Shakira - Waka Waka (This Time for Africa)</a></h3>
-                <p>Shakira</p>
-                <p>4,1 Md de vues · il y a 15 ans</p>
+                <h3><a href="video.html">Ce dictateur a vraiment existé et on dirait une blague</a></h3>
+                <p>SQUEEZE</p>
+                <p>10 M vues · il y a 2 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 13 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/13.mp4">
+              <img src="img/miniatures/13.avif" alt="Miniature vidéo" />
+              <span class="duree">19:17</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/13.jpg" alt="Avatar Trash Bandicoot" />
+              <div class="video-texte">
+                <h3><a href="video.html">Les PIRES TRAHISONS du JEU VIDÉO</a></h3>
+                <p>Trash Bandicoot</p>
+                <p>244 k vues · il y a 1 jour</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 14 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/14.mp4">
+              <img src="img/miniatures/14.avif" alt="Miniature vidéo" />
+              <span class="duree">17:08</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/14.jpg" alt="Avatar Tsuku Live" />
+              <div class="video-texte">
+                <h3><a href="video.html">ON DOIT PAS RIRE À NOS LIKES SUR TIKTOK (c'était trop dur)</a></h3>
+                <p>Tsuku Live</p>
+                <p>140 k vues · il y a 5 jours</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 15 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/15.mp4">
+              <img src="img/miniatures/15.avif" alt="Miniature vidéo" />
+              <span class="duree">17:31</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/15.jpg" alt="Avatar MELVIL" />
+              <div class="video-texte">
+                <h3><a href="video.html">L'émulation sur Switch a franchi un ENORME cap (Tico)</a></h3>
+                <p>MELVIL</p>
+                <p>49 k de vues · il y a 5 jours</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 16 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="img/miniatures/16.avif" alt="Miniature vidéo" />
+              <span class="duree">37:14</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/16.jpg" alt="Avatar Sylvain Lyve" />
+              <div class="video-texte">
+                <h3><a href="video.html">Lamborghini Aventador SV : Le poids d'une lignée</a></h3>
+                <p>Sylvain Lyve</p>
+                <p>1,4 M de vues · il y a 1 an</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 17 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/17.mp4">
+              <img src="img/miniatures/17.avif" alt="Miniature vidéo" />
+              <span class="duree">12:46</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/17.jpg" alt="Avatar Nightech" />
+              <div class="video-texte">
+                <h3><a href="video.html">J’ai passé 500 heures à chercher un intérêt à cet iPhone</a></h3>
+                <p>Nightech</p>
+                <p>1,5 k vues · il y a 1 h</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 18 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/18.mp4">
+              <img src="img/miniatures/18.avif" alt="Miniature vidéo" />
+              <span class="duree"><span class="material-symbols-outlined icon-duree" aria-hidden="true">music_note</span>1:01</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/18.jpg" alt="Avatar KADOKAWAanime" />
+              <div class="video-texte">
+                <h3><a href="video.html">TVPV</a></h3>
+                <p>KADOKAWAanime</p>
+                <p>1,3 M vues · il y a 13 jours</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 19 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/19.mp4">
+              <img src="img/miniatures/19.avif" alt="Miniature vidéo" />
+              <span class="duree">16:44</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/19.jpg" alt="Avatar EnderVerse" />
+              <div class="video-texte">
+                <h3><a href="video.html">TOP 20+ Minecraft Mods for 26.2 &amp; Older (NeoForge/Fabric) | August 2026</a></h3>
+                <p>EnderVerse</p>
+                <p>110 k vues · il y a 1 m.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 20 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="img/miniatures/20.avif" alt="Miniature vidéo" />
+              <span class="duree">16:08</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/16.jpg" alt="Avatar Sylvain Lyve" />
+              <div class="video-texte">
+                <h3><a href="video.html">Honda NSX : Merci Ayrton Senna</a></h3>
+                <p>Sylvain Lyve</p>
+                <p>1 M vues · il y a 1 an</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 21 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/21.mp4">
+              <img src="img/miniatures/21.avif" alt="Miniature vidéo" />
+              <span class="duree"><span class="material-symbols-outlined icon-duree" aria-hidden="true">music_note</span>2:37</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/21.jpg" alt="Avatar Soul - Topic" />
+              <div class="video-texte">
+                <h3><a href="video.html">Nobunaga</a></h3>
+                <p>Soul - Topic</p>
+                <p>332 k de vues · il y a 4 m.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 22 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature" data-preview="media/22.mp4">
+              <img src="img/miniatures/22.avif" alt="Miniature vidéo" />
+              <span class="duree"><span class="material-symbols-outlined icon-duree" aria-hidden="true">music_note</span>2:29</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/22.jpg" alt="Avatar La Mano 1.9" />
+              <div class="video-texte">
+                <h3><a href="video.html">La Mano 1.9 - CHANEL (Clip Officiel)</a></h3>
+                <p>La Mano 1.9 - Officiel</p>
+                <p>2,5 M de vues · il y a 5 m.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 23 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="img/miniatures/23.avif" alt="Miniature vidéo" />
+              <span class="duree">26:37</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/16.jpg" alt="Avatar Sylvain Lyve" />
+              <div class="video-texte">
+                <h3><a href="video.html">VTECH : Les voitures les PLUS DANGEREUSES ( encore )</a></h3>
+                <p>Sylvain Lyve</p>
+                <p>2,5 M vues · il y a 10 m.</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vidéo 24 -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="img/miniatures/24.avif" alt="Miniature vidéo" />
+              <span class="duree">1:02:26</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="img/chaine/squeeze1.jpg" alt="Avatar SQUEEZIE" />
+              <div class="video-texte">
+                <h3><a href="video.html">QUI TROUVERA LE MEILLEUR CONTAINER ? (ft Freddy Gladieux, Mastu, Theodort, Billy)</a></h3>
+                <p>SQUEEZIE</p>
+                <p>7,6 M vues · il y a 3 jours</p>
               </div>
               <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
                 <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
